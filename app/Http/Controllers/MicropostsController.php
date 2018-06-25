@@ -38,4 +38,15 @@ class MicropostsController extends Controller
 
         return redirect()->back();
     }
+    
+     public function destroy($id)
+    {
+        $micropost = \App\Micropost::find($id);
+
+        if (\Auth::id() === $micropost->user_id) {
+            $micropost->delete();
+        }
+
+        return redirect()->back();
+    }
 }
